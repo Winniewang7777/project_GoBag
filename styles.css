@@ -103,9 +103,34 @@ html,body {
 .legend-dot.yellow { background:#ffa837; }
 .legend-dot.red { background:#c93a3a; }
 
-/* list grid two columns */
-.list-grid { display:flex; gap:12px; }
-.list-column { flex:1 1 50%; display:flex; flex-direction:column; gap:12px; }
+/* ==========================
+   修正後的列表容器樣式
+   使用 CSS Grid 來確保順序是：左->右，上->下
+   ========================== */
+.list-container {
+  display: grid;
+  /* 桌機版：切成兩欄，比例 1:1 */
+  grid-template-columns: 1fr 1fr; 
+  /* 欄與列的間距 */
+  gap: 12px; 
+  margin-bottom: 12px;
+}
+
+/* item-card 不需要額外的 margin 或 break-inside 設定了 */
+.item-card {
+  /* 保持原本的卡片視覺樣式 */
+  padding: 10px; 
+  border-radius: 12px; 
+  background: linear-gradient(180deg,#fff,#fffef7);
+  border: 1px solid rgba(128,128,128,0.06);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.04);
+  display: flex; 
+  gap: 10px; 
+  align-items: flex-start;
+  
+  /* 確保高度一致 (選用) */
+  height: 100%;
+}
 
 /* each item card */
 .item-card {
@@ -138,6 +163,8 @@ html,body {
 @media (max-width:900px) {
   .container { flex-direction:column; }
   .left-panel, .right-panel { width:100%; }
-  .list-grid { flex-direction:column; }
-  .list-column { width:100%;}
+  .list-container {
+    /* 手機版：強制改回一欄 */
+    grid-template-columns: 1fr;
+  }
 }

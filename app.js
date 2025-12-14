@@ -31,8 +31,7 @@ const ICON_MAP =
   "其他":"📦"
 };
 
-const listColLeft = document.getElementById('list-col-left');
-const listColRight = document.getElementById('list-col-right');
+const listContainer = document.getElementById('list-container');
 const urgentList = document.getElementById('urgent-list');
 const totalCountEl = document.getElementById('total-count');
 const safeCountEl = document.getElementById('safe-count');
@@ -153,13 +152,13 @@ function renderAll() {
     });
   }
 
-  // render list into two columns (alternating)
-  listColLeft.innerHTML = '';
-  listColRight.innerHTML = '';
+// render list into a single container for CSS columns
+  listContainer.innerHTML = ''; // 清空容器
+
+// 直接依序將卡片塞入同一個容器，CSS Grid 會自動幫您排成 左#1 右#2
   filtered.forEach((it, idx) => {
     const card = createItemCard(it, idx+1);
-    if (idx % 2 === 0) listColLeft.appendChild(card);
-    else listColRight.appendChild(card);
+    listContainer.appendChild(card);
   });
 }
 
