@@ -89,7 +89,7 @@ html,body {
 .urgent-item .meta { font-size:12px; color:#666; }
 
 /* controls */
-.controls { display:flex; gap:10px; align-items:center; margin-bottom:12px; }
+.controls { display:flex; gap:10px; align-items:center; margin-bottom:12px; flex-wrap: wrap;}
 .controls label { font-size:13px; color:#444; }
 .controls select { padding:6px 8px; border-radius:8px; border:1px solid rgba(0,0,0,0.08); }
 
@@ -166,5 +166,23 @@ html,body {
   .list-container {
     /* 手機版：強制改回一欄 */
     grid-template-columns: 1fr;
+  }
+
+  /* 1. 在手機版隱藏佔位符，不需要它來撐開距離了 */
+  .spacer {
+    display: none;
+  }
+  /* 2. 讓圖例區塊獨佔一行 (New Row) */
+  .legend {
+    width: 100%;        /* 強制佔滿寬度 */
+    margin-top: 4px;    /* 與上方的下拉選單拉開一點距離 */
+    padding-top: 8px;   /* 增加一點呼吸感 */
+    border-top: 1px dashed rgba(0,0,0,0.05); /* (選用) 加個分隔線讓層次清楚 */
+    
+    /* 確保內容靠左或居中，看您喜好 */
+    justify-content: flex-start; 
+    
+    /* 預防圖例裡面的文字在 iPhone SE 等小手機還是太長，允許圖例內部也能換行 */
+    flex-wrap: wrap; 
   }
 }
